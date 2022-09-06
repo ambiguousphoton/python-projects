@@ -1,3 +1,4 @@
+Auther = "Vyoam"
 from turtle import color
 from PIL import *
 from tkinter import ttk
