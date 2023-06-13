@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todolist</title>
+    <link rel="stylesheet" href="static/index.css">
+</head>
+<body>
+    <div id="head">
+        <h3>TODO LIST</h3>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name='title' id="enter" placeholder="Title">
+            <button type="submit" id="Add-item">Add</button>
+        </form>
+    </div>
+    <div id="items">
+        {% for todo in todos reversed %}
+            <div class="list">
+                <li id="list-item">{{todo.title | title}}</li>
+                <span id="close">
+                    <a id="a"
+                    
+                     href="delete/{{todo.id}}">DELETE</a> 
+                </span>
+            </div> 
+        {% endfor %}
+    </div>
+
+</body>
+</html>
