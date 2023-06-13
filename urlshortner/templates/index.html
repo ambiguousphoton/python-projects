@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL SHORTNER</title>
+    <link rel="stylesheet" href="static/index.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1 id="heading"> URL SHORTNER </h1>
+    <div id="main">
+        <form id="post-form">
+            {% csrf_token %}
+            <input type="text" name="link" id="link" placeholder="enter link">
+            <button type="submit" id="cute-button">Shorten</button>
+        </form>
+        <div id="head">
+            <h2 id="copiedlink">your shortened link will be here!!</h2>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).on('submit', '#post-form', function(e){
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/create',
+                data:{
+                    link:$('#link').val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(data){
+                    $('h2').html("localhost:8000/"+data)
+                }
+            });
+        });
+    </script>
+</body>
+</html>
